@@ -5,6 +5,7 @@ import com.example.reservasBaldeDeLixo.adpter.input.dtos.ClientesDtoMapper;
 import com.example.reservasBaldeDeLixo.application.domain.model.Clientes;
 import com.example.reservasBaldeDeLixo.application.port.input.CriarCliente;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,8 @@ public class ClientesController {
     private final CriarCliente criarCliente;
     private final ClientesDtoMapper mapper;
 
+
+    @PostMapping("criar")
     public ClientesDto criar(@RequestBody ClientesDto clientesDto) {
         Clientes criarClientes = criarCliente.execute(mapper.toDoamin(clientesDto));
         return mapper.toDto(criarClientes);
