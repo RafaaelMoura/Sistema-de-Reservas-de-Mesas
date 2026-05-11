@@ -15,6 +15,6 @@ public class CriaClienteUsecaseImpl implements CriarCliente {
 
     @Override
     public Clientes execute(Clientes clientes) {
-        return clientesGateway.cria(clientes);
+        return clientesGateway.criar(clientes);
     }
 }
