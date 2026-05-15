@@ -1,6 +1,6 @@
--- V1__table_sql.sql
+-- V1__table_clientes.sql
 
-CREATE TABLE usuario (
+CREATE TABLE tb_cliente (
 
      id BIGSERIAL PRIMARY KEY,
      nome VARCHAR(255) NOT NULL,
