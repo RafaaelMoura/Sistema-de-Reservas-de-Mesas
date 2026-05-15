@@ -1,8 +1,8 @@
 spring:
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/baudedelixo
-    username: baudelixo
+    url: jdbc:postgresql://localhost:5432/baldedelixo
+    username: baldedelixo
     password: admin123
     driver-class-name: org.postgresql.Driver
 
