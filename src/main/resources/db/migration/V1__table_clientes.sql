@@ -6,4 +6,5 @@ CREATE TABLE tb_cliente (
      nome VARCHAR(255) NOT NULL,
      telefone VARCHAR(20) NOT NULL,
      email VARCHAR(255) NOT NULL UNIQUE
+
 );

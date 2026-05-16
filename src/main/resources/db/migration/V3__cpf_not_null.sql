@@ -1,0 +1,3 @@
+ALTER TABLE tb_cliente
+
+    ALTER COLUMN cpf SET NOT NULL;
