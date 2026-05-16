@@ -6,9 +6,12 @@ import com.example.reservasBaldeDeLixo.application.domain.model.Clientes;
 import com.example.reservasBaldeDeLixo.application.port.input.CriarClienteUsecase;
 import com.example.reservasBaldeDeLixo.application.port.input.ListarClientesInput;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,9 +29,12 @@ public class ClientesController {
     }
 
     @PostMapping("/criarcliente")
-    public ClientesDto criar(@RequestBody ClientesDto clientesDto) {
+    public ResponseEntity<Map<String, Object>> criar(@RequestBody ClientesDto clientesDto) { 
         Clientes criarClientes = criarClienteUsecase.execute(mapper.toDoamin(clientesDto));
-        return mapper.toDto(criarClientes);
+        Map<String, Object> response = new HashMap<>();
+        response.put("Menssagem:","Cliente Criado com Sucesso");
+        response.put("Dados do Cliete",mapper.toDto(criarClientes));
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/listadeclientes")

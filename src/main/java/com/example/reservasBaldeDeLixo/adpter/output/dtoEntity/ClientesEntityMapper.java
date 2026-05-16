@@ -11,6 +11,7 @@ public class ClientesEntityMapper {
         return new ClientesEntity(
                 clientes.id(),
                 clientes.nome(),
+                clientes.cpf(),
                 clientes.telefone(),
                 clientes.email()
         );
@@ -20,6 +21,7 @@ public class ClientesEntityMapper {
         return new Clientes(
                 clientesEntity.getId(),
                 clientesEntity.getNome(),
+                clientesEntity.getCpf(),
                 clientesEntity.getTelefone(),
                 clientesEntity.getEmail()
         );

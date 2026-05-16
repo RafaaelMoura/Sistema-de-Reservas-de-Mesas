@@ -10,6 +10,7 @@ public class ClientesDtoMapper {
         return new ClientesDto(
                 clientes.id(),
                 clientes.nome(),
+                clientes.cpf(),
                 clientes.telefone(),
                 clientes.email()
         );
@@ -19,6 +20,7 @@ public class ClientesDtoMapper {
         return new Clientes(
                 clientesdto.getId(),
                 clientesdto.getNome(),
+                clientesdto.getCpf(),
                 clientesdto.getTelefone(),
                 clientesdto.getEmail()
         );
