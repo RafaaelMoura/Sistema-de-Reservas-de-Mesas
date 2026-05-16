@@ -1,13 +1,13 @@
 services:
 
   postgres:
-    image: postgres:16
-    container_name: postgres-db
+    image: postgres:15.17
+    container_name: postgres-db-bdl
     restart: always
 
     environment:
-      POSTGRES_DB: baudeDeLixo
-      POSTGRES_USER: baudedelixo
+      POSTGRES_DB: baldedelixo
+      POSTGRES_USER: baldedelixo
       POSTGRES_PASSWORD: admin123
 
     ports:
