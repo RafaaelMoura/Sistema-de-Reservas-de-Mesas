@@ -1,5 +1,6 @@
 package com.example.reservasBaldeDeLixo.adpter.input.dtos;
 
+import com.example.reservasBaldeDeLixo.adpter.input.DtoResponse.ClienteCriadoResponseDto;
 import com.example.reservasBaldeDeLixo.application.domain.model.Clientes;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,13 @@ public class ClientesDtoMapper {
                 clientesdto.getEmail()
         );
     }
+
+    public ClienteCriadoResponseDto clienteCriadoResponseDto(Clientes clientes) {
+        return new ClienteCriadoResponseDto(
+                clientes.nome(), "Cliente criado com sucesso!"
+        );
+    }
+
 
 
 }

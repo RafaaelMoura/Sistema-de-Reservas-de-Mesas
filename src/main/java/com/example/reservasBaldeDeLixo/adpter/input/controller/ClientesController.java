@@ -1,11 +1,13 @@
 package com.example.reservasBaldeDeLixo.adpter.input.controller;
 
+import com.example.reservasBaldeDeLixo.adpter.input.DtoResponse.ClienteCriadoResponseDto;
 import com.example.reservasBaldeDeLixo.adpter.input.dtos.ClientesDto;
 import com.example.reservasBaldeDeLixo.adpter.input.dtos.ClientesDtoMapper;
 import com.example.reservasBaldeDeLixo.application.domain.model.Clientes;
 import com.example.reservasBaldeDeLixo.application.port.input.CriarClienteUsecase;
 import com.example.reservasBaldeDeLixo.application.port.input.ListarClientesInput;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("v1/baldedelixo")
 public class ClientesController {
 
@@ -22,19 +25,13 @@ public class ClientesController {
     private final ClientesDtoMapper mapper;
     private final ListarClientesInput listarClientesInput;
 
-    public ClientesController(CriarClienteUsecase criarClienteUsecase, ClientesDtoMapper mapper, ListarClientesInput listarClientesInput) {
-        this.criarClienteUsecase = criarClienteUsecase;
-        this.mapper = mapper;
-        this.listarClientesInput = listarClientesInput;
-    }
+
 
     @PostMapping("/criarcliente")
-    public ResponseEntity<Map<String, Object>> criar(@RequestBody ClientesDto clientesDto) { 
+    public ResponseEntity<ClienteCriadoResponseDto> criar(@RequestBody ClientesDto clientesDto) {
         Clientes criarClientes = criarClienteUsecase.execute(mapper.toDoamin(clientesDto));
-        Map<String, Object> response = new HashMap<>();
-        response.put("Menssagem:","Cliente Criado com Sucesso");
-        response.put("Dados do Cliete",mapper.toDto(criarClientes));
-        return ResponseEntity.ok(response);
+        ClienteCriadoResponseDto response = mapper.clienteCriadoResponseDto(criarClientes);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/listadeclientes")
