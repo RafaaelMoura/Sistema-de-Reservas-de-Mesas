@@ -31,6 +31,31 @@ public class ClientesRepositoryGateway implements ClientesGateway {
 
     }
 
+    //ESPECIFICO PARA O CAMPO CPF - CONFORME ESTUDADO
+   /*@Override
+    public boolean clienteExiste(String cpf) {
+        return clientesRepository.findAll() //Busca todos os cpfs cadastrados
+                .stream()  //cria lista
+                .anyMatch(
+                        cliente -> cliente.getCpf()
+                                .equalsIgnoreCase(cpf)); //começa a filtrar a lista, se encontrar um cpf igual ao que foi passado, ele retorna true, caso contrário, retorna false
+    }*/
+
+    @Override
+    public boolean clienteExiste(String cpf) {
+        return clientesRepository.existsByCpf(cpf);
+    }
+
+    @Override
+    public boolean emailExiste(String email) {
+        return clientesRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean telefoneExiste(String telefone) {
+        return clientesRepository.existsByTelefone(telefone);
+    }
+
     @Override
     public List<Clientes> buscarClientes() {
         return clientesRepository.findAll()

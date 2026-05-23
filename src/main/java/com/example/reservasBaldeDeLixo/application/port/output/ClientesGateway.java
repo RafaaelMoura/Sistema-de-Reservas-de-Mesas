@@ -7,7 +7,11 @@ import java.util.List;
 public interface ClientesGateway {
 
     Clientes criar(Clientes clientes);
-
     List<Clientes> buscarClientes();
+
+    boolean clienteExiste(String cpf);
+    boolean emailExiste(String email);
+    boolean telefoneExiste(String telefone);
+
 
 }
