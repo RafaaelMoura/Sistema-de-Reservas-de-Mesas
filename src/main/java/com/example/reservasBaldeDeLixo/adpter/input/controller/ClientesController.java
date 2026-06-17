@@ -4,6 +4,7 @@ import com.example.reservasBaldeDeLixo.adpter.input.DtoResponse.ClienteCriadoRes
 import com.example.reservasBaldeDeLixo.adpter.input.dtos.ClientesDto;
 import com.example.reservasBaldeDeLixo.adpter.input.dtos.ClientesDtoMapper;
 import com.example.reservasBaldeDeLixo.application.domain.model.Clientes;
+import com.example.reservasBaldeDeLixo.application.port.input.BuscarClienteId;
 import com.example.reservasBaldeDeLixo.application.port.input.CriarClienteUsecase;
 import com.example.reservasBaldeDeLixo.application.port.input.ListarClientesInput;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,8 @@ public class ClientesController {
     private final CriarClienteUsecase criarClienteUsecase;
     private final ClientesDtoMapper mapper;
     private final ListarClientesInput listarClientesInput;
+    private final BuscarClienteId buscarClienteId;
+
 
 
 
@@ -41,6 +44,14 @@ public class ClientesController {
                 .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<Clientes> buscarPorId(@PathVariable String cpfCliente) {
+        Clientes clientes = buscarClienteId.execute(cpfCliente);
+        return ResponseEntity.ok(clientes);
+
+    }
+
 
 
 }

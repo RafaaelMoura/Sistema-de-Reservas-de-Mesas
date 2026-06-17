@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -56,11 +57,18 @@ public class ClientesRepositoryGateway implements ClientesGateway {
         return clientesRepository.existsByTelefone(telefone);
     }
 
+
     @Override
     public List<Clientes> buscarClientes() {
         return clientesRepository.findAll()
                 .stream()
                 .map(entityMapper::toDomain).toList();
+    }
+
+    @Override
+    public Optional<Clientes> buscarClientePorId(String cpf) {
+        return clientesRepository.findByClientesId(cpf)
+                .map(entityMapper::toDomain);
     }
 
 
